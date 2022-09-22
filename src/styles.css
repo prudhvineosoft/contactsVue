@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Capriola&family=Dancing+Script&family=Rampart+One&family=Tangerine&family=Ubuntu&display=swap');
+
+body {
+    background-color: #0b0f19 !important;
+
+}
+
+#app {
+    font-family: 'Capriola', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    color: white;
+}
+
+nav {
+    padding: 30px;
+}
+
+.nav-link {
+    font-weight: bold;
+    color: white !important;
+    font-size: 22px !important;
+}
+
+.nav-link.router-link-exact-active {
+    color: rgb(37, 38, 41) !important;
+    font-weight: bold;
+}
+
+.logo {
+    font-family: 'Rampart One', cursive;
+    font-size: 30px !important;
+    font-weight: bold;
+}
+
+.card {
+    background-color: #0b0f19 !important;
+    border-color: #6366f1 !important;
+    transition: transform 250ms;
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-align: center;
+
+}
+
+.card:hover {
+    background-color: rgba(255, 255, 255, .04) !important;
+    transform: translateY(-4px);
+    box-shadow: #6365f1a8 0px 5px 17px 0px;
+}
+
+.list-group-item {
+    background-color: transparent !important;
+    color: rgb(161, 159, 159) !important;
+    font-size: 20px;
+    border-color: rgba(128, 128, 128, 0.315) !important;
+}
+
+.spinner {
+    position: fixed;
+    top: 35%;
+    left: 18%;
+    z-index: 1
+}
+
+.my_image {
+    width: 250px !important;
+    height: 250px !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+
+
+/* large screens */
+@media screen and (min-width: 591px) {
+    .card {
+        text-align: start;
+        min-height: 370px !important;
+    }
+
+    .spinner {
+        position: fixed;
+        top: 40%;
+        left: 37%;
+        z-index: 1
+    }
+}
+
+@media screen and (min-width: 991px) {
+    .card {
+        text-align: start;
+    }
+
+    .logo {
+        font-family: 'Rampart One', cursive;
+        font-size: 40px !important;
+        font-weight: bold;
+    }
+
+    .spinner {
+        position: fixed;
+        top: 40%;
+        left: 42%;
+        z-index: 1
+    }
+
+    .my_image {
+        width: 100%;
+
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
