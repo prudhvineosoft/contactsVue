@@ -10,13 +10,16 @@
     <new-contact />
     <show-contact :id="this.myId" />
     <edit-contact ref="editcontact" :id="this.myId2" />
-    <pre>{{ data }}</pre>
+    <div class="row d-flex justify-content-around">
+      <div class="col-md-5 group mt-3">
+        <input class="my-input" type="search" v-model="search" />
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label class="my-label">Search</label>
+      </div>
+    </div>
     <div class="row">
-      <div
-        class="col-lg-6"
-        v-for="contact of contacts.contactsList"
-        :key="contact.id"
-      >
+      <div class="col-lg-6" v-for="contact of filter" :key="contact.id">
         <div class="card my-3 p-3 mx-auto" style="max-width: 850px">
           <div class="row g-0 align-items-center">
             <div class="col-md-5 my-auto">
@@ -34,7 +37,7 @@
                     </li>
                     <li class="list-group-item">
                       Email :
-                      <span class="">{{ contact.email }}</span>
+                      <span class="h6">{{ contact.email }}</span>
                     </li>
                   </ul>
                 </div>
@@ -88,14 +91,30 @@ export default {
     return {
       myId: "",
       myId2: "",
+      search: "",
     };
   },
-  computed: mapGetters({
-    contacts: "getContactsState",
-  }),
+  computed: {
+    ...mapGetters({ contacts: "getContactsState" }),
+
+    filter: function () {
+      if (/^[0-9]+$/.test(this.search)) {
+        console.log(/^[0-9]+$/.test(this.search));
+        return this.contacts.contactsList.filter((a) => {
+          let number = a.mobile.toString();
+          return number.startsWith(this.search);
+        });
+      } else {
+        return this.contacts.contactsList.filter((a) => {
+          return a.title.toLowerCase().startsWith(this.search.toLowerCase());
+        });
+      }
+    },
+  },
   created: function () {
     this.$store.dispatch("getContactsModule/getContacts");
   },
+
   methods: {
     deleteContact: async function (id) {
       await this.$store.dispatch("deleteModule/deleteContact", { id: id });
@@ -112,5 +131,4 @@ export default {
 };
 </script>
 
-<style >
-</style>
+<style></style>
